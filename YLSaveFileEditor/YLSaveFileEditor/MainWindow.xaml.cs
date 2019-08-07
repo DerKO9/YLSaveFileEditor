@@ -63,7 +63,6 @@ namespace YLSaveFileEditor
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "dat files (*.dat)|*.dat|All files (*.*)|*.*";
-            openFileDialog.InitialDirectory = @"C:\Program Files (x86)\Steam\userdata\144944088\360830\remote";
             SelectFile:
             if (openFileDialog.ShowDialog() == true)
             {
