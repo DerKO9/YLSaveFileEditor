@@ -6,13 +6,80 @@
              xmlns:local="clr-namespace:YLSaveFileEditor"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <DataGrid Name="dgaaSimple" HorizontalAlignment="Left" AutoGenerateColumns="False" ItemsSource="{Binding Path=GameStatsVertical}" ToolTip="TEST">
+    <UserControl.Resources>
+        <local:CurrentLoadStartPointConverter x:Key="CurrentLoadStartPointConverter" />
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <DataGrid Name="dgaaSimple" HorizontalAlignment="Left" Margin="5" AutoGenerateColumns="False" 
+                  ItemsSource="{Binding Path=GameStatsVertical}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Binding="{Binding Id, Mode=OneWay}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=OneWay}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Value" Binding="{Binding Value, Mode=TwoWay}"/>
             </DataGrid.Columns>
         </DataGrid>
-    </Grid>
+        <StackPanel Margin="5">
+            <Label FontWeight="Bold">Current Load Start Point</Label>
+            <ComboBox Name="loadStartPointComboBox" Width="200" Height="25">
+                <ComboBoxItem Content="0=ShipWreck Creek" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=0}"/>
+                <ComboBoxItem Content="1=Hub1 Entrance" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=1}"/>
+                <ComboBoxItem Content="2=Hub2 Entrance" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=2}"/>
+                <ComboBoxItem Content="3=Hub3 Entrance" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=3}"/>
+                <ComboBoxItem Content="4=Hub1 TT Tome" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=4}"/>
+                <ComboBoxItem Content="5=Hub2 Glacier Tome" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=5}"/>
+                <ComboBoxItem Content="6=Hub2 MM Tome" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=6}"/>
+                <ComboBoxItem Content="7=Hub3 CC Tome" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=7}"/>
+                <ComboBoxItem Content="8=Hub3 Galaxy Tome" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=8}"/>
+                <ComboBoxItem Content="9=TT Level" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=9}"/>
+                <ComboBoxItem Content="10=Glacier Level" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=10}"/>
+                <ComboBoxItem Content="11=MM Level" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=11}"/>
+                <ComboBoxItem Content="12=CC Level" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=12}"/>
+                <ComboBoxItem Content="13=Galaxy Level" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=13}"/>
+                <ComboBoxItem Content="14=TT Level Expanded" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=14}"/>
+                <ComboBoxItem Content="15=Glacier Level Expanded" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=15}"/>
+                <ComboBoxItem Content="16=MM Level Expanded" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=16}"/>
+                <ComboBoxItem Content="17=CC Level Expanded" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=17}"/>
+                <ComboBoxItem Content="18=Galaxy Level Expanded" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=18}"/>
+                <ComboBoxItem Content="19=Hub1 Waterworks Entrance" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=19}"/>
+                <ComboBoxItem Content="20=Hub1 Sonar Totem Shortcut" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=20}"/>
+                <ComboBoxItem Content="21=Hub1 Quiz1 Entrance" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=21}"/>
+                <ComboBoxItem Content="22=Hub2 Assembly Line Door" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=22}"/>
+                <ComboBoxItem Content="24=WaterWorks Entrance" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=24}"/>
+                <ComboBoxItem Content="26=Hub2 Windybridge Shortcut" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=26}"/>
+                <ComboBoxItem Content="27=Hub3 Entrance Again?" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=27}"/>
+                <ComboBoxItem Content="28=Hub3-Hub2 Shortcut" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=28}"/>
+                <ComboBoxItem Content="29=Hub3 Capital B Tower" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=29}"/>
+                <ComboBoxItem Content="30>=Blank?" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=30}"/>
+            </ComboBox>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

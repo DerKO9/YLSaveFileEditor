@@ -262,5 +262,24 @@ namespace YLSaveFileEditor
             public int Value { get; set; }
         }
     }
+
+    public class CurrentLoadStartPointConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((int)value == int.Parse((string)parameter))
+                return true;
+            return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || parameter == null)
+                return null;
+            if (!(bool)value)
+                return Binding.DoNothing;
+            return int.Parse((string)parameter);
+        }
+    }
 }
     
