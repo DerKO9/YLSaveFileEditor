@@ -12,7 +12,7 @@
         <local:SingleCollectibleConverter x:Key="SingleCollectibleConverter"/>
     </UserControl.Resources>
     <StackPanel>
-        <StackPanel>
+        <StackPanel Margin="5">
             <Label FontWeight="Bold" Content="Collectables"/>
             <CheckBox IsChecked="{Binding Pagies, Mode=TwoWay,
                 Converter={StaticResource AllHivoryPagiesConverter}}">All Pagies Collected</CheckBox>

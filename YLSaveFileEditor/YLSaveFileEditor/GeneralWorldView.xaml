@@ -14,8 +14,7 @@
         <local:SingleCollectibleConverter x:Key="SingleCollectibleConverter"/>
     </UserControl.Resources>
     <StackPanel>
-        
-        <StackPanel>
+        <StackPanel Margin="5,5,0,0">
             <Label FontWeight="Bold" Content="Collectables"/>
             <CheckBox IsChecked="{Binding Pagies, Mode=TwoWay,
                 Converter={StaticResource AllPagiesConverter}}">All Pagies Collected</CheckBox>
@@ -33,7 +32,7 @@
                 Converter={StaticResource SingleCollectibleConverter}}">Mollycool Collected</CheckBox>
             
         </StackPanel>
-        <StackPanel>
+        <StackPanel Margin="5,0,0,0">
             <Label FontWeight="Bold" Content="World State"/>
             <RadioButton Content="Locked" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                 Converter={StaticResource WorldStateConverter}, ConverterParameter=Locked}"/>
