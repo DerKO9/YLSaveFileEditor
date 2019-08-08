@@ -98,23 +98,14 @@
                 <Label Grid.Row="0" Grid.Column="0">Health Extenders</Label>
                 <TextBox Name="HealthExtenderTextBox" Grid.Row="0" Grid.Column="1" Height="20"
                          Text="{Binding Path=SelectedGameData.Player.HealthExtenderTokenCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         PreviewTextInput="NumberValidationTextBox" TextChanged="HealthExtenderTextBox_TextChanged"/>
+                         TextChanged="HealthExtenderTextBox_TextChanged"/>
                 <Label Grid.Row="1" Grid.Column="0">Power Extenders</Label>
                 <TextBox Grid.Row="1" Grid.Column="1" MinWidth="30" Height="20" 
-                         Text="{Binding Path=SelectedGameData.Player.SpecialExtenderTokenCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         PreviewTextInput="NumberValidationTextBox"/>
+                         Text="{Binding Path=SelectedGameData.Player.SpecialExtenderTokenCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Grid.Row="2" Grid.Column="0">Spendable Pagies</Label>
                 <TextBox Grid.Row="2" Grid.Column="1" MinWidth="30" Height="20" 
-                         Text="{Binding Path=SelectedGameData.Player.UnspentPagies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         PreviewTextInput="NumberValidationTextBox"/>
+                         Text="{Binding Path=SelectedGameData.Player.UnspentPagies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
-            <StackPanel Orientation="Horizontal">
-                
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                
-            </StackPanel>
-            
         </StackPanel>
     </StackPanel>
 </UserControl>
