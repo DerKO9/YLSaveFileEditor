@@ -102,24 +102,30 @@ namespace YLSaveFileEditor
 
     public class Tonics
     {
-        private int[] active = new int[16];
+        private int[] _active = new int[16];
 
         [JsonProperty("active")]
         public int[] Active
         {
             get
             {
-                for (int i = 0; i < active.Length; i++)
+                for (int i = 0; i < _active.Length; i++)
                 {
-                    if (active[i] == 1)
-                    active[i] = i + 1;
+                    if (_active[i] == 1)
+                    _active[i] = i + 1;
                 }
-                return active;
+                return _active;
             }
             set
             {
-                if (value.Length != 16) Array.Resize(ref value, 16);
-                active = value;
+                //if (value.Length != 16) Array.Resize(ref value, 16);
+                int[] temp = new int[16];
+                for (int i = 0; i < value.Length; i++)
+                {
+                    if (value[i] != 0) 
+                        temp[value[i]-1] = value[i];
+                }
+                _active = temp;
             }
         }
     }
