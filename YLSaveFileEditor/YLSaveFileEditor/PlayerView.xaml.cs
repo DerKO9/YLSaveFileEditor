@@ -108,7 +108,7 @@ namespace YLSaveFileEditor
             if (x > 7 && _haveGivenMacHealthWarning == false)
             {
                 MessageBox.Show("Having more than 7 health extenders will cause the game to make an" +
-                    " annoying beeping sound that can't be turned off, but otherwise the extra health works it as expected.",
+                    " annoying beeping sound, but otherwise the extra health works as expected.",
                     "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 _haveGivenMacHealthWarning = true;
             }
