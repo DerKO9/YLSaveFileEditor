@@ -32,6 +32,8 @@
                    Content="{Binding SelectedFile}" />
             <Button Name="LoadButton" Content="Load" Click="LoadButton_Clicked" Height="25" Width="85" Margin="5"/>
             <Button Name="SaveButton" Content="Save" Click="SaveButton_Clicked" Height="25" Width="85" Margin="5" IsEnabled="False"/>
+            <CheckBox Name="ReadOnlyCheckBox" Content="Read Only" VerticalAlignment="Center" Margin="5,0,10,0"
+                      IsChecked="{Binding FileReadOnly}" IsEnabled="False"/>
         </StackPanel>
     </Grid>
 </Window>

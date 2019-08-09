@@ -28,7 +28,7 @@ namespace YLSaveFileEditor
         public GameData SelectedGameData { get; set; } = new GameData();
         public List<GameStat> GameStatsVertical { get; set; } = new List<GameStat>();
         public string SelectedFile { get; set; }
-        public bool FileReadOnly { get; set; }
+        public bool FileReadOnly { get; set; } = false;
 
         public MainWindow()
         {
@@ -38,12 +38,32 @@ namespace YLSaveFileEditor
 
         private void SaveButton_Clicked(object sender, RoutedEventArgs e)
         {
+            var attr = File.GetAttributes(SelectedFile);
+            // unset read-only
+            attr &= ~FileAttributes.ReadOnly;
+            File.SetAttributes(SelectedFile, attr);
+
             for (int i = 0; i < SelectedGameData.Gamestats.Names.Length; i++)
             {
                 SelectedGameData.Gamestats.Values[i] = GameStatsVertical[i].Value;
             }
             string selectedGameDataJSON = SelectedGameData.ToJson();
             File.WriteAllText(SelectedFile, selectedGameDataJSON);
+
+            
+            if (FileReadOnly)
+            {
+                // set read-only
+                attr |= FileAttributes.ReadOnly;
+                File.SetAttributes(SelectedFile, attr);
+            }
+            else
+            {
+                // unset read-only
+                attr &= ~FileAttributes.ReadOnly;
+                File.SetAttributes(SelectedFile, attr);
+            }
+
             SaveButton.IsEnabled = false;
             DelayedSaveButtonEnable();
         }
@@ -84,6 +104,17 @@ namespace YLSaveFileEditor
             {
                 GameStatsVertical.Add(new GameStat(i+1, SelectedGameData.Gamestats.Names[i], SelectedGameData.Gamestats.Values[i]));
             }
+
+            var attr = File.GetAttributes(SelectedFile);
+            if (attr == (attr | FileAttributes.ReadOnly))
+            {
+                ReadOnlyCheckBox.IsChecked = true;
+            }
+            else if (attr == (attr & ~FileAttributes.ReadOnly))
+            {
+                ReadOnlyCheckBox.IsChecked = false;
+            }
+            ReadOnlyCheckBox.IsEnabled = true;
 
             DataContext = null;
             DataContext = this;
