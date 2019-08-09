@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,23 +23,10 @@ namespace YLSaveFileEditor
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
-        private GameData _selectedGameData = new GameData();
-        public GameData SelectedGameData
-        {
-            get
-            {
-                SaveButton.IsEnabled = true;
-                return _selectedGameData;
-            }
-            set
-            {
-                _selectedGameData = value;
-                RaisePropertyChanged();
-            }
-        }
-        public List<GameStat> GameStatsVertical { get; set; }
+        public GameData SelectedGameData { get; set; } = new GameData();
+        public List<GameStat> GameStatsVertical { get; set; } = new List<GameStat>();
         public string SelectedFile { get; set; }
         public bool FileReadOnly { get; set; }
 
@@ -50,13 +38,23 @@ namespace YLSaveFileEditor
 
         private void SaveButton_Clicked(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < _selectedGameData.Gamestats.Names.Length; i++)
+            for (int i = 0; i < SelectedGameData.Gamestats.Names.Length; i++)
             {
-                _selectedGameData.Gamestats.Values[i] = GameStatsVertical[i].Value;
+                SelectedGameData.Gamestats.Values[i] = GameStatsVertical[i].Value;
             }
             string selectedGameDataJSON = SelectedGameData.ToJson();
             File.WriteAllText(SelectedFile, selectedGameDataJSON);
             SaveButton.IsEnabled = false;
+            DelayedSaveButtonEnable();
+        }
+
+        private async void DelayedSaveButtonEnable()
+        {
+            await Task.Run(() =>
+            {
+                Thread.Sleep(1000);
+            });
+            SaveButton.IsEnabled = true;
         }
 
         private void LoadButton_Clicked(object sender, RoutedEventArgs e)
@@ -78,13 +76,13 @@ namespace YLSaveFileEditor
             SelectedGameData = new GameData();
             SelectedGameData = GameData.FromJson(File.ReadAllText(SelectedFile));
             
-            //SaveButton.IsEnabled = false;
+            SaveButton.IsEnabled = true;
             //SelectedGameData.Gamestats.Names
 
             GameStatsVertical = new List<GameStat>();
-            for (int i = 0; i < _selectedGameData.Gamestats.Names.Length; i++)
+            for (int i = 0; i < SelectedGameData.Gamestats.Names.Length; i++)
             {
-                GameStatsVertical.Add(new GameStat(i+1, _selectedGameData.Gamestats.Names[i], _selectedGameData.Gamestats.Values[i]));
+                GameStatsVertical.Add(new GameStat(i+1, SelectedGameData.Gamestats.Names[i], SelectedGameData.Gamestats.Values[i]));
             }
 
             DataContext = null;
@@ -95,12 +93,6 @@ namespace YLSaveFileEditor
         private void DataEditView_Updated(object sender, EventArgs e)
         {
             //SaveButton.IsEnabled = true;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged([CallerMemberName] string caller = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(""));
         }
 
         public class GameStat

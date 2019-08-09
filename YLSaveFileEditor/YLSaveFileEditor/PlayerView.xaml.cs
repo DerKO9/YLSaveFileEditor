@@ -21,9 +21,6 @@ namespace YLSaveFileEditor
     /// </summary>
     public partial class PlayerView : UserControl
     {
-
-        public event EventHandler PlayerUpdated;
-
         public PlayerView()
         {
             InitializeComponent();
@@ -101,7 +98,6 @@ namespace YLSaveFileEditor
 
         private void TonicCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
         {
-            PlayerUpdated(sender, e);
         }
 
         private bool _haveGivenMacHealthWarning = false;
