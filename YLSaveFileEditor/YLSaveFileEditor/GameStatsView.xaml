@@ -20,7 +20,7 @@
         </DataGrid>
         <StackPanel Margin="5">
             <Label FontWeight="Bold">Current Load Start Point</Label>
-            <ComboBox Name="loadStartPointComboBox" Width="200" Height="25">
+            <ComboBox Name="loadStartPointComboBox" Width="200" Height="25" MaxDropDownHeight="Auto">
                 <ComboBoxItem Content="0=ShipWreck Creek" IsSelected="{Binding Path=GameStatsVertical[224].Value,
                     Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=0}"/>
                 <ComboBoxItem Content="1=Hub1 Entrance" IsSelected="{Binding Path=GameStatsVertical[224].Value,
@@ -67,8 +67,12 @@
                     Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=21}"/>
                 <ComboBoxItem Content="22=Hub2 Assembly Line Door" IsSelected="{Binding Path=GameStatsVertical[224].Value,
                     Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=22}"/>
+                <ComboBoxItem Content="23=Hub2 Pipe Door" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=23}"/>
                 <ComboBoxItem Content="24=WaterWorks Entrance" IsSelected="{Binding Path=GameStatsVertical[224].Value,
                     Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=24}"/>
+                <ComboBoxItem Content="25=Hub2 Corner Hallway Door" IsSelected="{Binding Path=GameStatsVertical[224].Value,
+                    Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=25}"/>
                 <ComboBoxItem Content="26=Hub2 Windybridge Shortcut" IsSelected="{Binding Path=GameStatsVertical[224].Value,
                     Converter={StaticResource CurrentLoadStartPointConverter}, ConverterParameter=26}"/>
                 <ComboBoxItem Content="27=Hub3 Entrance Again?" IsSelected="{Binding Path=GameStatsVertical[224].Value,
