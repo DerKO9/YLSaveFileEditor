@@ -121,11 +121,6 @@ namespace YLSaveFileEditor
             DataEditView.IsEnabled = true;
         }
 
-        private void DataEditView_Updated(object sender, EventArgs e)
-        {
-            //SaveButton.IsEnabled = true;
-        }
-
         public class GameStat
         {
             public GameStat(int id, string name, int value)
