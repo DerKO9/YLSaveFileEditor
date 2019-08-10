@@ -26,6 +26,9 @@
             <TabItem Header="Misc Game Data">
                 <local:GameStatsView/>
             </TabItem>
+            <TabItem Header="About">
+                <local:AboutView/>
+            </TabItem>
         </TabControl>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Height="40" Width="auto">
             <Label Name="FileTextBox" FontWeight="Bold" Height="25" Margin="5" HorizontalContentAlignment="Right"
