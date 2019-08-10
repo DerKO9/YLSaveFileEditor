@@ -14,6 +14,16 @@
         <local:SingleCollectibleConverter x:Key="SingleCollectibleConverter"/>
     </UserControl.Resources>
     <StackPanel>
+        <StackPanel Margin="5,0,0,0">
+            <Label FontWeight="Bold" Content="World State"/>
+            <RadioButton Content="Locked" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource WorldStateConverter}, ConverterParameter=Locked}"/>
+            <!--{StaticResource LockedString}-->
+            <RadioButton Content="Unlocked" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource WorldStateConverter}, ConverterParameter=Unlocked}"/>
+            <RadioButton Content="Expanded" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource WorldStateConverter}, ConverterParameter=Expanded}"/>
+        </StackPanel>
         <StackPanel Margin="5,5,0,0">
             <Label FontWeight="Bold" Content="Collectables"/>
             <CheckBox IsChecked="{Binding Pagies, Mode=TwoWay,
@@ -32,15 +42,6 @@
                 Converter={StaticResource SingleCollectibleConverter}}">Mollycool Collected</CheckBox>
             
         </StackPanel>
-        <StackPanel Margin="5,0,0,0">
-            <Label FontWeight="Bold" Content="World State"/>
-            <RadioButton Content="Locked" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                Converter={StaticResource WorldStateConverter}, ConverterParameter=Locked}"/>
-            <!--{StaticResource LockedString}-->
-            <RadioButton Content="Unlocked" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                Converter={StaticResource WorldStateConverter}, ConverterParameter=Unlocked}"/>
-            <RadioButton Content="Expanded" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                Converter={StaticResource WorldStateConverter}, ConverterParameter=Expanded}"/>
-        </StackPanel>
+        
     </StackPanel>
 </UserControl>
