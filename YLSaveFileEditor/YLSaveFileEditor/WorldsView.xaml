@@ -20,7 +20,10 @@
             <local:GeneralWorldView DataContext="{Binding Path=SelectedGameData.Worlds[6]}"/>
         </TabItem>
         <TabItem Header="Capital Chashino">
-            <local:GeneralWorldView DataContext="{Binding Path=SelectedGameData.Worlds[4]}"/>
+            <StackPanel>
+                <local:GeneralWorldView DataContext="{Binding Path=SelectedGameData.Worlds[4]}"/>
+                <!--<CheckBox Margin="5,0,0,0" Content="All Casino Chips Collected"/>-->
+            </StackPanel>
         </TabItem>
         <TabItem Header="Galleon Galaxy">
             <local:GeneralWorldView DataContext="{Binding Path=SelectedGameData.Worlds[3]}"/>
