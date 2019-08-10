@@ -10,12 +10,12 @@
         <local:CurrentLoadStartPointConverter x:Key="CurrentLoadStartPointConverter" />
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-        <DataGrid Name="dgaaSimple" HorizontalAlignment="Left" Margin="5" AutoGenerateColumns="False" 
+        <DataGrid HorizontalAlignment="Left" Margin="5" AutoGenerateColumns="False" 
                   ItemsSource="{Binding Path=GameStatsVertical}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="#" Binding="{Binding Id, Mode=OneWay}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=OneWay}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Value" Binding="{Binding Value, Mode=TwoWay}"/>
+                <DataGridTextColumn Header="#" Width="30" Binding="{Binding Id, Mode=OneWay}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Name" Width="220" Binding="{Binding Name, Mode=OneWay}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Value" Width="50" Binding="{Binding Value, Mode=TwoWay}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Margin="5">

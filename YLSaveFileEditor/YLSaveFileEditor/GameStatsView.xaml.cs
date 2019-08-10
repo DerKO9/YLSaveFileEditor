@@ -20,7 +20,6 @@ namespace YLSaveFileEditor
     /// </summary>
     public partial class GameStatsView : UserControl
     {
-        //public List<User> MyUsers { get; set; }
         public GameStatsView()
         {
             InitializeComponent();
