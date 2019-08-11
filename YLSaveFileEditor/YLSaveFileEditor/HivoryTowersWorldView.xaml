@@ -11,13 +11,25 @@
         <local:AllHivoryQuillsConverter x:Key="AllHivoryQuillsConverter"/>
         <local:SingleCollectibleConverter x:Key="SingleCollectibleConverter"/>
     </UserControl.Resources>
-    <StackPanel>
+    <StackPanel Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
         <StackPanel Margin="5">
             <Label FontWeight="Bold" Content="Collectables"/>
-            <CheckBox IsChecked="{Binding Pagies, Mode=TwoWay,
-                Converter={StaticResource AllHivoryPagiesConverter}}">All Pagies Collected</CheckBox>
-            <CheckBox IsChecked="{Binding Coins, Mode=TwoWay,
-                Converter={StaticResource AllHivoryQuillsConverter}}">All Quills Collected</CheckBox>
+            <CheckBox>All Pagies Collected
+                <CheckBox.IsChecked>
+                    <MultiBinding Converter="{StaticResource AllHivoryPagiesConverter}" ConverterParameter="1">
+                        <Binding Path="Pagies"/>
+                        <Binding Path="PagieCount"/>
+                    </MultiBinding>
+                </CheckBox.IsChecked>
+            </CheckBox>
+            <CheckBox>All Quills Collected
+                <CheckBox.IsChecked>
+                    <MultiBinding Converter="{StaticResource AllHivoryQuillsConverter}" ConverterParameter="2">
+                        <Binding Path="Coins"/>
+                        <Binding Path="CoinCount"/>
+                    </MultiBinding>
+                </CheckBox.IsChecked>
+            </CheckBox>
             <CheckBox IsChecked="{Binding Healthextendertoken, Mode=TwoWay,
                 Converter={StaticResource SingleCollectibleConverter}}">Health Extender Collected</CheckBox>
             <CheckBox IsChecked="{Binding Specialextendertoken, Mode=TwoWay,

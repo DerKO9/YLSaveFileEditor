@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace YLSaveFileEditor
@@ -66,15 +67,17 @@ namespace YLSaveFileEditor
         }
     }
 
-    public class AllPagiesConverter : IValueConverter
+    public class AllPagiesConverter : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
-            int[] valueArray = ((int[])value);
+            if (value.Contains(DependencyProperty.UnsetValue))
+                return Binding.DoNothing;
+            int[] pagieArray = (int[])value[0];
             int count = 0;
-            for (int i = 0; i < valueArray.Length; i++)
+            for (int i = 0; i < pagieArray.Length; i++)
             {
-                if (valueArray[i] == 2)
+                if (pagieArray[i] == 2)
                     count++;
             }
             if (count >= 25)
@@ -84,25 +87,37 @@ namespace YLSaveFileEditor
             return null;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-                return Binding.DoNothing;
+            object[] returnObject = new object[2];
+            int[] returnArray = new int[30];
             if ((bool)value)
-                return new int[30] { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
-            return new int[30] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            {
+                for (int i = 0; i < returnArray.Length; i++)
+                {
+                    returnArray[i] = 2;
+                }
+                returnObject[0] = returnArray;
+                returnObject[1] = 25;
+                return returnObject;
+            }
+            returnObject[0] = returnArray;
+            returnObject[1] = 0;
+            return returnObject;
         }
     }
 
-    public class AllQuillsConverter : IValueConverter
+    public class AllQuillsConverter : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
-            int[] valueArray = ((int[])value);
+            if (value.Contains(DependencyProperty.UnsetValue))
+                return Binding.DoNothing;
+            int[] quillsArray = (int[])value[0];
             int count = 0;
-            for (int i = 0; i < valueArray.Length; i++)
+            for (int i = 0; i < quillsArray.Length; i++)
             {
-                if (valueArray[i] == 1)
+                if (quillsArray[i] == 1)
                     count++;
             }
             if (count >= 200)
@@ -112,10 +127,9 @@ namespace YLSaveFileEditor
             return null;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-                return Binding.DoNothing;
+            object[] returnObject = new object[2];
             int[] returnArray = new int[200];
             if ((bool)value)
             {
@@ -123,20 +137,27 @@ namespace YLSaveFileEditor
                 {
                     returnArray[i] = 1;
                 }
+                returnObject[0] = returnArray;
+                returnObject[1] = 200;
+                return returnObject;
             }
-            return returnArray;
+            returnObject[0] = returnArray;
+            returnObject[1] = 0;
+            return returnObject;
         }
     }
 
-    public class AllHivoryPagiesConverter : IValueConverter
+    public class AllHivoryPagiesConverter : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
-            int[] valueArray = ((int[])value);
+            if (value.Contains(DependencyProperty.UnsetValue))
+                return Binding.DoNothing;
+            int[] pagieArray = (int[])value[0];
             int count = 0;
-            for (int i = 0; i < valueArray.Length; i++)
+            for (int i = 0; i < pagieArray.Length; i++)
             {
-                if (valueArray[i] == 2)
+                if (pagieArray[i] == 2)
                     count++;
             }
             if (count >= 20)
@@ -146,25 +167,37 @@ namespace YLSaveFileEditor
             return null;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-                return Binding.DoNothing;
+            object[] returnObject = new object[2];
+            int[] returnArray = new int[30];
             if ((bool)value)
-                return new int[30] { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
-            return new int[30] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            {
+                for (int i = 0; i < returnArray.Length; i++)
+                {
+                    returnArray[i] = 2;
+                }
+                returnObject[0] = returnArray;
+                returnObject[1] = 20;
+                return returnObject;
+            }
+            returnObject[0] = returnArray;
+            returnObject[1] = 0;
+            return returnObject;
         }
     }
 
-    public class AllHivoryQuillsConverter : IValueConverter
+    public class AllHivoryQuillsConverter : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
-            int[] valueArray = ((int[])value);
+            if (value.Contains(DependencyProperty.UnsetValue))
+                return Binding.DoNothing;
+            int[] quillsArray = (int[])value[0];
             int count = 0;
-            for (int i = 0; i < valueArray.Length; i++)
+            for (int i = 0; i < quillsArray.Length; i++)
             {
-                if (valueArray[i] == 1)
+                if (quillsArray[i] == 1)
                     count++;
             }
             if (count >= 10)
@@ -174,10 +207,9 @@ namespace YLSaveFileEditor
             return null;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-                return Binding.DoNothing;
+            object[] returnObject = new object[2];
             int[] returnArray = new int[10];
             if ((bool)value)
             {
@@ -185,10 +217,28 @@ namespace YLSaveFileEditor
                 {
                     returnArray[i] = 1;
                 }
+                returnObject[0] = returnArray;
+                returnObject[1] = 10;
+                return returnObject;
             }
-            return returnArray;
+            returnObject[0] = returnArray;
+            returnObject[1] = 0;
+            return returnObject;
         }
     }
+
+    //public class CasinoChipsConverter : IMultiValueConverter
+    //{
+    //    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+
+    //    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 
     public class AllGhostwritersConverter : IValueConverter
     {
