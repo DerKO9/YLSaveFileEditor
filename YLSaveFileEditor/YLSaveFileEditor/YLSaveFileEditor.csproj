@@ -85,16 +85,32 @@
     <Compile Include="GameStatsView.xaml.cs">
       <DependentUpon>GameStatsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GeneralWorldView.xaml.cs">
+    <Compile Include="WorldViews\CapitalCashinoView.xaml.cs">
+      <DependentUpon>CapitalCashinoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorldViews\GalleonGalaxyView.xaml.cs">
+      <DependentUpon>GalleonGalaxyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorldViews\GeneralWorldView.xaml.cs">
       <DependentUpon>GeneralWorldView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HivoryTowersWorldView.xaml.cs">
-      <DependentUpon>HivoryTowersWorldView.xaml</DependentUpon>
+    <Compile Include="WorldViews\GlitterglazeGlacierView.xaml.cs">
+      <DependentUpon>GlitterglazeGlacierView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorldViews\HivoryTowersView.xaml.cs">
+      <DependentUpon>HivoryTowersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PlayerView.xaml.cs">
       <DependentUpon>PlayerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WorldsView.xaml.cs">
+    <Compile Include="WorldViews\MoodymazeMarshView.xaml.cs">
+      <DependentUpon>MoodymazeMarshView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorldViews\TribalstackTropicsView.xaml.cs">
+      <DependentUpon>TribalstackTropicsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorldViews\WorldConverters.cs" />
+    <Compile Include="WorldViews\WorldsView.xaml.cs">
       <DependentUpon>WorldsView.xaml</DependentUpon>
     </Compile>
     <Page Include="AboutView.xaml">
@@ -105,11 +121,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GeneralWorldView.xaml">
+    <Page Include="WorldViews\CapitalCashinoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HivoryTowersWorldView.xaml">
+    <Page Include="WorldViews\GalleonGalaxyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorldViews\GeneralWorldView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorldViews\GlitterglazeGlacierView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorldViews\HivoryTowersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,7 +158,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WorldsView.xaml">
+    <Page Include="WorldViews\MoodymazeMarshView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorldViews\TribalstackTropicsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorldViews\WorldsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
