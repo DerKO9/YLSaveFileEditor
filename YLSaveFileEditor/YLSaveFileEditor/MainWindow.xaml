@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YLSaveFileEditor"
+        xmlns:world="clr-namespace:YLSaveFileEditor.WorldViews"
         mc:Ignorable="d"
         Title="YL Save File Editor" Height="450" Width="800" WindowStartupLocation="CenterOwner" Icon="Resources/YlSaveFileEdit.ico">
     <Window.Resources>
@@ -21,7 +22,7 @@
                 <local:PlayerView/>
             </TabItem>
             <TabItem Header="Worlds">
-                <local:WorldsView />
+                <world:WorldsView />
             </TabItem>
             <TabItem Header="Misc Game Data">
                 <local:GameStatsView/>
