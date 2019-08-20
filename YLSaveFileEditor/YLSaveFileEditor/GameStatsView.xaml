@@ -11,7 +11,7 @@
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
         <DataGrid HorizontalAlignment="Left" Margin="5" AutoGenerateColumns="False" 
-                  ItemsSource="{Binding Path=GameStatsVertical}">
+                  ItemsSource="{Binding Path=FilteredGameStats.MiscCollectionView}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Width="30" Binding="{Binding Id, Mode=OneWay}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Name" Width="220" Binding="{Binding Name, Mode=OneWay}" IsReadOnly="True"/>
