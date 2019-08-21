@@ -16,16 +16,16 @@
     <StackPanel Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
         <StackPanel Margin="5,0,0,0">
             <Label FontWeight="Bold" Content="World State"/>
-            <RadioButton Content="Locked" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+            <RadioButton x:Name="lockedRadioButton" Content="Locked" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                 Converter={StaticResource WorldStateConverter}, ConverterParameter=Locked}"/>
-            <RadioButton Content="Unlocked" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+            <RadioButton x:Name="unlockedRadioButton" Content="Unlocked" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                 Converter={StaticResource WorldStateConverter}, ConverterParameter=Unlocked}"/>
-            <RadioButton Content="Expanded" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+            <RadioButton x:Name="expandedRadioButton" Content="Expanded" IsChecked="{Binding WorldStateData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                 Converter={StaticResource WorldStateConverter}, ConverterParameter=Expanded}"/>
         </StackPanel>
         <StackPanel Margin="5,5,0,0">
             <Label FontWeight="Bold" Content="Collectables"/>
-            <CheckBox> All Pagies Collected
+            <CheckBox Name="allPagiesCheckBox"> All Pagies Collected
                 <CheckBox.IsChecked>
                     <MultiBinding Converter="{StaticResource AllPagiesConverter}" ConverterParameter="1">
                         <Binding Path="Pagies"/>
@@ -33,7 +33,7 @@
                     </MultiBinding>
                 </CheckBox.IsChecked>
             </CheckBox>
-            <CheckBox>All Quills Collected
+            <CheckBox Name="allQuillsCheckBox">All Quills Collected
                 <CheckBox.IsChecked>
                     <MultiBinding Converter="{StaticResource AllQuillsConverter}" ConverterParameter="2">
                         <Binding Path="Coins"/>
@@ -41,15 +41,15 @@
                     </MultiBinding>
                 </CheckBox.IsChecked>
             </CheckBox>
-            <CheckBox IsChecked="{Binding Healthextendertoken, Mode=TwoWay,
+            <CheckBox Name="healthExtenderCheckBox" IsChecked="{Binding Healthextendertoken, Mode=TwoWay,
                 Converter={StaticResource SingleCollectibleConverter}}">Health Extender Collected</CheckBox>
-            <CheckBox IsChecked="{Binding Specialextendertoken, Mode=TwoWay,
-                Converter={StaticResource SingleCollectibleConverter}}">Special Extender Collected</CheckBox>
-            <CheckBox IsChecked="{Binding Ghostwriters, Mode=TwoWay,
+            <CheckBox Name="powerExtenderCheckBox" IsChecked="{Binding Specialextendertoken, Mode=TwoWay,
+                Converter={StaticResource SingleCollectibleConverter}}">Power Extender Collected</CheckBox>
+            <CheckBox Name="allGhostWritersCheckBox" IsChecked="{Binding Ghostwriters, Mode=TwoWay,
                 Converter={StaticResource AllGhostwritersConverter}}">All GhostWriters Collected</CheckBox>
-            <CheckBox IsChecked="{Binding Arcadetoken, Mode=TwoWay,
+            <CheckBox Name="PlayCoinCheckBox" IsChecked="{Binding Arcadetoken, Mode=TwoWay,
                 Converter={StaticResource SingleCollectibleConverter}}">Play Coin Collected</CheckBox>
-            <CheckBox IsChecked="{Binding Transformtoken, Mode=TwoWay,
+            <CheckBox Name="MollycoolCheckBox" IsChecked="{Binding Transformtoken, Mode=TwoWay,
                 Converter={StaticResource SingleCollectibleConverter}}">Mollycool Collected</CheckBox>
             
         </StackPanel>
