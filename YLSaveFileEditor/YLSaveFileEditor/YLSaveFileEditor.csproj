@@ -82,6 +82,7 @@
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters.cs" />
+    <Compile Include="GameStat.cs" />
     <Compile Include="GameStatsListCollectionViews.cs" />
     <Compile Include="GameStatsView.xaml.cs">
       <DependentUpon>GameStatsView.xaml</DependentUpon>
