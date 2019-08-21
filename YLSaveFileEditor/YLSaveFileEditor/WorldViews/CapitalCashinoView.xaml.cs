@@ -24,5 +24,23 @@ namespace YLSaveFileEditor.WorldViews
         {
             InitializeComponent();
         }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            generalWorldView.lockedRadioButton.IsChecked = true;
+            generalWorldView.allPagiesCheckBox.IsChecked = false;
+            generalWorldView.allQuillsCheckBox.IsChecked = false;
+            generalWorldView.healthExtenderCheckBox.IsChecked = false;
+            generalWorldView.powerExtenderCheckBox.IsChecked = false;
+            generalWorldView.allGhostWritersCheckBox.IsChecked = false;
+            generalWorldView.PlayCoinCheckBox.IsChecked = false;
+            generalWorldView.MollycoolCheckBox.IsChecked = false;
+            allCashinoChipsCheckBox.IsChecked = false;
+            spentCasinoChipsTextBox.Text = "0";
+            foreach (var item in gameStatsDataGrid.ItemsSource.Cast<GameStat>().ToList())
+            {
+                item.Value = 0;
+            }
+        }
     }
 }
