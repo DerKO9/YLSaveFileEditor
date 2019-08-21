@@ -1,19 +1,36 @@
-﻿namespace YLSaveFileEditor
+﻿using System.ComponentModel;
+
+namespace YLSaveFileEditor
 {
-    public partial class MainWindow
+    public class GameStat : INotifyPropertyChanged
     {
-        public class GameStat
+        private int _value;
+
+        public GameStat(int id, string name, int value)
         {
-            public GameStat(int id, string name, int value)
+            Id = id;
+            Name = name;
+            Value = value;
+        }
+        public int Id { get; }
+        public string Name { get; }
+        public int Value {
+            get => _value;
+            set
             {
-                Id = id;
-                Name = name;
-                Value = value;
+                _value = value;
+                OnPropertyChanged("Value");
             }
-            public int Id { get; }
-            public string Name { get; }
-            public int Value { get; set; }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
     }
 }
