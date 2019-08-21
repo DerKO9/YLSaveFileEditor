@@ -228,18 +228,45 @@ namespace YLSaveFileEditor.WorldViews
         }
     }
 
-    //public class CasinoChipsConverter : IMultiValueConverter
-    //{
-    //    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+    public class AllCasinoChipsConverter : IMultiValueConverter
+    {
+        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value.Contains(DependencyProperty.UnsetValue))
+                return Binding.DoNothing;
+            int[] casinochipsArray = (int[])value[0];
+            int count = 0;
+            for (int i = 0; i < casinochipsArray.Length; i++)
+            {
+                if (casinochipsArray[i] == 2)
+                    count++;
+            }
+            if (count >= 190)
+                return true;
+            if (count == 0)
+                return false;
+            return null;
+        }
 
-    //    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            object[] returnObject = new object[2];
+            int[] returnArray = new int[190];
+            if ((bool)value)
+            {
+                for (int i = 0; i < returnArray.Length; i++)
+                {
+                    returnArray[i] = 2;
+                }
+                returnObject[0] = returnArray;
+                returnObject[1] = 190;
+                return returnObject;
+            }
+            returnObject[0] = returnArray;
+            returnObject[1] = 0;
+            return returnObject;
+        }
+    }
 
     public class AllGhostwritersConverter : IValueConverter
     {
