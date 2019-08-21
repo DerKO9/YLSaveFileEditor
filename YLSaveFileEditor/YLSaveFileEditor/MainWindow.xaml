@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:YLSaveFileEditor"
         xmlns:world="clr-namespace:YLSaveFileEditor.WorldViews"
         mc:Ignorable="d"
-        Title="YL Save File Editor" Height="450" Width="800" WindowStartupLocation="CenterOwner" Icon="Resources/YlSaveFileEdit.ico">
+        Title="YL Save File Editor" Height="450" Width="630" WindowStartupLocation="CenterOwner" Icon="Resources/YlSaveFileEdit.ico">
     <Window.Resources>
         <Style TargetType="{x:Type Control}">
             <Setter Property="Cursor" Value="Hand"/>
@@ -33,7 +33,8 @@
         </TabControl>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Height="40" Width="auto">
             <Label Name="FileTextBox" FontWeight="Bold" Height="25" Margin="5" HorizontalContentAlignment="Right"
-                   Content="{Binding SelectedFile}" />
+                   Content="{Binding SelectedFileDisplay}" />
+            <Button Name="ReloadButton" Content="Reload" Click="ReloadButton_Click" Height="25" Width="85" Margin="5" IsEnabled="False"/>
             <Button Name="LoadButton" Content="Load" Click="LoadButton_Clicked" Height="25" Width="85" Margin="5"/>
             <Button Name="SaveButton" Content="Save" Click="SaveButton_Clicked" Height="25" Width="85" Margin="5" IsEnabled="False"/>
             <CheckBox Name="ReadOnlyCheckBox" Content="Read Only" VerticalAlignment="Center" Margin="5,0,10,0"
