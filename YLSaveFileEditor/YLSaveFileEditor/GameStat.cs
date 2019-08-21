@@ -19,18 +19,10 @@ namespace YLSaveFileEditor
             set
             {
                 _value = value;
-                OnPropertyChanged("Value");
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
-        }
     }
 }
