@@ -35,6 +35,11 @@ namespace YLSaveFileEditor
         {
             InitializeComponent();
             DataContext = this;
+            AppDomain.CurrentDomain.FirstChanceException += (sender, eventArgs) =>
+            {
+                MessageBox.Show("An error occurred.\n Check to see if your save file is valid and up to date. \n \n"
+                    + eventArgs.Exception.ToString(), "Error ¯\\_(ツ)_/¯", MessageBoxButton.OK, MessageBoxImage.Error);
+            };
         }
 
         private void SaveButton_Clicked(object sender, RoutedEventArgs e)
