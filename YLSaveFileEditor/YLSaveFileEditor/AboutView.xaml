@@ -19,11 +19,11 @@
         <StackPanel Orientation="Horizontal">
             <Label Content="Guide:"/>
             <Label>
-                <Hyperlink NavigateUri="http://www.example.com" RequestNavigate="Hyperlink_RequestNavigate">
-                    Example.com
+                <Hyperlink NavigateUri="https://www.speedrun.com/yl/guide/ngzr3" RequestNavigate="Hyperlink_RequestNavigate">
+                    https://www.speedrun.com/yl/guide/ngzr3
                 </Hyperlink>
             </Label>
         </StackPanel>
-        <Label Content="Date Released: August # 2019"/>
+        <Label Content="Date Released: August 2019"/>
     </StackPanel>
 </UserControl>
