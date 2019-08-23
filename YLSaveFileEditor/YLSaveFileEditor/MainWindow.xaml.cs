@@ -44,6 +44,9 @@ namespace YLSaveFileEditor
             attr &= ~FileAttributes.ReadOnly;
             File.SetAttributes(SelectedFile, attr);
 
+            SelectedGameData.ArcadeLeaderboards[2].MScores[9].Name = "DKO";
+            SelectedGameData.ArcadeLeaderboards[2].MScores[9].Points = 420;
+
             GameStatsVertical = FilteredGameStats.CollectionViewToVerticalStats(GameStatsVertical);
             for (int i = 0; i < SelectedGameData.Gamestats.Names.Length; i++)
             {
@@ -86,9 +89,9 @@ namespace YLSaveFileEditor
         SelectFile:
             if (openFileDialog.ShowDialog() == true)
             {
-                if (!System.IO.Path.GetFileName(openFileDialog.FileName).StartsWith("slot"))
+                if (System.IO.Path.GetFileName(openFileDialog.FileName).Equals("profile.dat"))
                 {
-                    MessageBox.Show("Must open \"slot#.dat\"", @"Can't Open File ¯\_(ツ)_/¯", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Can't edit \"profile.dat\"", @"Can't Open File ¯\_(ツ)_/¯", MessageBoxButton.OK, MessageBoxImage.Error);
                     goto SelectFile;
                 }
                 SelectedFile = openFileDialog.FileName;
@@ -109,8 +112,6 @@ namespace YLSaveFileEditor
         {
             SelectedGameData = new GameData();
             SelectedGameData = GameData.FromJson(File.ReadAllText(SelectedFile));
-
-            
 
             GameStatsVertical = new List<GameStat>();
             for (int i = 0; i < SelectedGameData.Gamestats.Names.Length; i++)
