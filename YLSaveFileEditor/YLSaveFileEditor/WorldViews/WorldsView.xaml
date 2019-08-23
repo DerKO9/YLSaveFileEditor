@@ -6,9 +6,6 @@
              xmlns:local="clr-namespace:YLSaveFileEditor.WorldViews"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <!--<UserControl.Resources>
-        <local:CasinoChipConverter x:Key="CasinoChipConverter" />
-    </UserControl.Resources>-->
     <TabControl>
         <TabItem Header="Hivory Towers">
             <local:HivoryTowersView/>
