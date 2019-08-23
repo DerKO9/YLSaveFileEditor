@@ -7,11 +7,6 @@
         xmlns:world="clr-namespace:YLSaveFileEditor.WorldViews"
         mc:Ignorable="d"
         Title="YL Save File Editor" Height="450" Width="630" WindowStartupLocation="CenterOwner" Icon="Resources/YlSaveFileEdit.ico">
-    <Window.Resources>
-        <Style TargetType="{x:Type Control}">
-            <Setter Property="Cursor" Value="Hand"/>
-        </Style>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -23,6 +18,9 @@
             </TabItem>
             <TabItem Header="Worlds">
                 <world:WorldsView />
+            </TabItem>
+            <TabItem Header="Arcade">
+                <local:ArcadeLeaderboardsView/>
             </TabItem>
             <TabItem Header="Misc Game Data">
                 <local:GameStatsView/>

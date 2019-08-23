@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="YLSaveFileEditor.ArcadeLeaderboardsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:YLSaveFileEditor"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ArcadeLeaderboardTemplate" DataType="{x:Type local:ArcadeLeaderboard}">
+            <Border BorderThickness="1" Margin="5" BorderBrush="Black" HorizontalAlignment="Left">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="5">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBlock Text="Game:"/>
+                            <TextBlock Text="{Binding LeaderboardName}" Margin="5,0,0,0" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <CheckBox Content="Has Completed Game" IsChecked="{Binding MPlayerHasCompleted}"/>
+                        <CheckBox Content="Has Set High Score" IsChecked="{Binding MPlayerHasSetHighScore}"/>
+                    </StackPanel>
+                    <DataGrid Grid.Column="1" ItemsSource="{Binding MScores}" CanUserAddRows="False"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <ItemsControl ItemsSource="{Binding SelectedGameData.ArcadeLeaderboards}" ItemTemplate="{StaticResource ArcadeLeaderboardTemplate}" HorizontalAlignment="Left">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </ScrollViewer>
+</UserControl>

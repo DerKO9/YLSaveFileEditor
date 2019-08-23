@@ -81,6 +81,9 @@
     <Compile Include="AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ArcadeLeaderboardsView.xaml.cs">
+      <DependentUpon>ArcadeLeaderboardsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters.cs" />
     <Compile Include="GameStat.cs" />
     <Compile Include="GameStatsListCollectionViews.cs" />
@@ -116,6 +119,10 @@
       <DependentUpon>WorldsView.xaml</DependentUpon>
     </Compile>
     <Page Include="AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ArcadeLeaderboardsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
