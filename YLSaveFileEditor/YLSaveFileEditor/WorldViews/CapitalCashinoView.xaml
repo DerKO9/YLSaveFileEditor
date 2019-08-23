@@ -25,9 +25,9 @@
                 <TextBox Name="spentCasinoChipsTextBox" Grid.Row="2" Grid.Column="1" MinWidth="30" Height="20" 
                          Text="{Binding Path=SelectedGameData.Player.SpentCasinoChips, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <!--<StackPanel Orientation="Horizontal">
                 <Button x:Name="resetButton" Content="Reset" Width="50" Height="25" Margin="5" Click="ResetButton_Click"/>
-            </StackPanel>
+            </StackPanel>-->
         </StackPanel>
         <DataGrid Name="gameStatsDataGrid" HorizontalAlignment="Left" Margin="5" AutoGenerateColumns="False" 
                   ItemsSource="{Binding Path=FilteredGameStats.CashinoCollectionView, Mode=TwoWay}">
