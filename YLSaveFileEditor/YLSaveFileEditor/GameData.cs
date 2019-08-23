@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -23,6 +26,10 @@ namespace YLSaveFileEditor
 
         [JsonProperty("tonics")]
         public Tonics Tonics { get; set; }
+
+        public static GameData FromJson(string json) => JsonConvert.DeserializeObject<GameData>(json);
+        public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
+
     }
 
     public class ArcadeLeaderboard
@@ -173,16 +180,5 @@ namespace YLSaveFileEditor
 
         [JsonProperty("worldStateData")]
         public string WorldStateData { get; set; }
-    }
-
-    public partial class GameData
-    {
-        public static GameData FromJson(string json) => JsonConvert.DeserializeObject<GameData>(json);
-    }
-
-    public static class Serialize
-    {
-
-        public static string ToJson(this GameData self) => JsonConvert.SerializeObject(self, Formatting.Indented);
     }
 }
