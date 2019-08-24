@@ -18,6 +18,11 @@ namespace YLSaveFileEditor
             base.OnStartup(e);
             // here you take control
             //MessageBox.Show("Startup");
+            AppDomain.CurrentDomain.UnhandledException += (sender, eventArgs) =>
+            {
+                MessageBox.Show("A fatal error occurred.\nCheck to see if your save file is valid and up to date. \n \n"
+                    + eventArgs.ExceptionObject.ToString(), "Error ¯\\_(ツ)_/¯", MessageBoxButton.OK, MessageBoxImage.Error);
+            };
         }
     }
 }
