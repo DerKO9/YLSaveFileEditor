@@ -90,6 +90,7 @@
     <Compile Include="GameStatsView.xaml.cs">
       <DependentUpon>GameStatsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OldWindowState.cs" />
     <Compile Include="WorldViews\CapitalCashinoView.xaml.cs">
       <DependentUpon>CapitalCashinoView.xaml</DependentUpon>
     </Compile>

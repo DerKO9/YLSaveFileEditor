@@ -30,16 +30,12 @@ namespace YLSaveFileEditor
         public string SelectedFile { get; set; } = "";
         public string SelectedFileDisplay { get => SelectedFile.Split('\\').LastOrDefault(); }
         public bool FileReadOnly { get; set; } = false;
+        private OldWindowState OldWindowState { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
-            AppDomain.CurrentDomain.FirstChanceException += (sender, eventArgs) =>
-            {
-                MessageBox.Show("An error occurred.\n Check to see if your save file is valid and up to date. \n \n"
-                    + eventArgs.Exception.ToString(), "Error ¯\\_(ツ)_/¯", MessageBoxButton.OK, MessageBoxImage.Error);
-            };
         }
 
         private void SaveButton_Clicked(object sender, RoutedEventArgs e)
@@ -89,6 +85,13 @@ namespace YLSaveFileEditor
 
         private void LoadButton_Clicked(object sender, RoutedEventArgs e)
         {
+            OldWindowState = new OldWindowState() {
+                SelectedGameData = SelectedGameData,
+                GameStatsVertical = GameStatsVertical,
+                SelectedFile = SelectedFile,
+                FilteredGameStats = FilteredGameStats,
+            };
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "dat files (*.dat)|*.dat|All files (*.*)|*.*";
         SelectFile:
@@ -96,7 +99,7 @@ namespace YLSaveFileEditor
             {
                 if (System.IO.Path.GetFileName(openFileDialog.FileName).Equals("profile.dat"))
                 {
-                    MessageBox.Show("Can't edit \"profile.dat\"", @"Can't Open File ¯\_(ツ)_/¯", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Can't edit \"profile.dat\"", @"Can't Open File ¯\_(ツ)_/¯", MessageBoxButton.OK, MessageBoxImage.Warning);
                     goto SelectFile;
                 }
                 SelectedFile = openFileDialog.FileName;
@@ -115,34 +118,46 @@ namespace YLSaveFileEditor
 
         private void LoadFile()
         {
-            SelectedGameData = new GameData();
-            SelectedGameData = GameData.FromJson(File.ReadAllText(SelectedFile));
-
-            GameStatsVertical = new List<GameStat>();
-            for (int i = 0; i < SelectedGameData.Gamestats.Names.Length; i++)
+            try
             {
-                GameStatsVertical.Add(new GameStat(i + 1, SelectedGameData.Gamestats.Names[i], SelectedGameData.Gamestats.Values[i]));
+                SelectedGameData = new GameData();
+                SelectedGameData = GameData.FromJson(File.ReadAllText(SelectedFile));
+
+                GameStatsVertical = new List<GameStat>();
+                for (int i = 0; i < SelectedGameData.Gamestats.Names.Length; i++)
+                {
+                    GameStatsVertical.Add(new GameStat(i + 1, SelectedGameData.Gamestats.Names[i], SelectedGameData.Gamestats.Values[i]));
+                }
+
+                FilteredGameStats = new GameStatsListCollectionViews(GameStatsVertical);
+
+                var attr = File.GetAttributes(SelectedFile);
+                if (attr == (attr | FileAttributes.ReadOnly))
+                {
+                    ReadOnlyCheckBox.IsChecked = true;
+                }
+                else if (attr == (attr & ~FileAttributes.ReadOnly))
+                {
+                    ReadOnlyCheckBox.IsChecked = false;
+                }
+
+                ReloadButton.IsEnabled = true;
+                SaveButton.IsEnabled = true;
+                ReadOnlyCheckBox.IsEnabled = true;
+
+                DataContext = null;
+                DataContext = this;
+                DataEditView.IsEnabled = true;
             }
-
-            FilteredGameStats = new GameStatsListCollectionViews(GameStatsVertical);
-
-            var attr = File.GetAttributes(SelectedFile);
-            if (attr == (attr | FileAttributes.ReadOnly))
+            catch
             {
-                ReadOnlyCheckBox.IsChecked = true;
+                SelectedGameData = OldWindowState.SelectedGameData;
+                GameStatsVertical = OldWindowState.GameStatsVertical;
+                SelectedFile = OldWindowState.SelectedFile;
+                FilteredGameStats = OldWindowState.FilteredGameStats;
+                MessageBox.Show("There was an error loading the file.\nCheck to see if your save file is valid and up to date.", @"Can't Open File ¯\_(ツ)_/¯", MessageBoxButton.OK, MessageBoxImage.Warning);
+                LoadButton_Clicked(null, null);
             }
-            else if (attr == (attr & ~FileAttributes.ReadOnly))
-            {
-                ReadOnlyCheckBox.IsChecked = false;
-            }
-
-            ReloadButton.IsEnabled = true;
-            SaveButton.IsEnabled = true;
-            ReadOnlyCheckBox.IsEnabled = true;
-
-            DataContext = null;
-            DataContext = this;
-            DataEditView.IsEnabled = true;
         }
     }
 }
