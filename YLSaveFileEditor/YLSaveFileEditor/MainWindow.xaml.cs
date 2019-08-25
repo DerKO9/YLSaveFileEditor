@@ -40,13 +40,20 @@ namespace YLSaveFileEditor
 
         private void SaveButton_Clicked(object sender, RoutedEventArgs e)
         {
+            SaveFile();
+
+            DelayedButtonEnable(e.OriginalSource as Button);
+        }
+
+        private void SaveFile()
+        {
             var attr = File.GetAttributes(SelectedFile);
             // unset read-only
             attr &= ~FileAttributes.ReadOnly;
             File.SetAttributes(SelectedFile, attr);
 
             SelectedGameData.ArcadeLeaderboards[2].MScores[9].Name = "DKO";
-            SelectedGameData.ArcadeLeaderboards[2].MScores[9].Points = 420;
+            SelectedGameData.ArcadeLeaderboards[2].MScores[9].Points = 69;
 
             GameStatsVertical = FilteredGameStats.CollectionViewToVerticalStats(GameStatsVertical);
             for (int i = 0; i < SelectedGameData.Gamestats.Names.Length; i++)
@@ -56,7 +63,7 @@ namespace YLSaveFileEditor
             string selectedGameDataJSON = SelectedGameData.ToJson();
             File.WriteAllText(SelectedFile, selectedGameDataJSON);
 
-            
+
             if (FileReadOnly)
             {
                 // set read-only
@@ -69,8 +76,6 @@ namespace YLSaveFileEditor
                 attr &= ~FileAttributes.ReadOnly;
                 File.SetAttributes(SelectedFile, attr);
             }
-
-            DelayedButtonEnable(e.OriginalSource as Button);
         }
 
         private async void DelayedButtonEnable(Button button)
@@ -147,7 +152,7 @@ namespace YLSaveFileEditor
             DelayedButtonEnable(buttonSource as Button);
         }
 
-            private void LoadFile()
+        private void LoadFile()
         {
             try
             {
@@ -185,15 +190,52 @@ namespace YLSaveFileEditor
             }
             catch (Exception e)
             {
-                SelectedGameData = OldWindowState.SelectedGameData;
-                GameStatsVertical = OldWindowState.GameStatsVertical;
-                SelectedFile = OldWindowState.SelectedFile;
-                FilteredGameStats = OldWindowState.FilteredGameStats;
-                MessageBoxResult result = MessageBox.Show("There was an error loading the file.\n" +
-                    "Check to see if your save file is valid and up to date.\n\n"+e.ToString(), @"Can't Open File ¯\_(ツ)_/¯",
-                    MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-                if(result == MessageBoxResult.OK)
+                MessageBoxResult result = MessageBox.Show($"There was an error loading \"{SelectedFileDisplay}\".\n" +
+                    "Check to see if your save file is valid and up to date.\n\n" +
+                    "Do you want to save the file as a blank file?\nThe save data will be lost.\n\n" +
+                    "Error Message: " + e.Message +
+                    "\nSource: " + e.StackTrace.Substring(0,Math.Min(200, e.StackTrace.Length)),
+                    @"Can't Open File ¯\_(ツ)_/¯",
+                    MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    string json = Properties.Resources._0_;
+
+                    SelectedGameData = new GameData();
+                    SelectedGameData = GameData.FromJson(json);
+
+                    GameStatsVertical = new List<GameStat>();
+                    for (int i = 0; i < SelectedGameData.Gamestats.Names.Length; i++)
+                    {
+                        GameStatsVertical.Add(new GameStat(i + 1, SelectedGameData.Gamestats.Names[i], SelectedGameData.Gamestats.Values[i]));
+                    }
+
+                    FilteredGameStats = new GameStatsListCollectionViews(GameStatsVertical);
+
+                    ReloadButton.IsEnabled = true;
+                    SaveButton.IsEnabled = true;
+                    ReadOnlyCheckBox.IsEnabled = true;
+                    ZeroButton.IsEnabled = true;
+                    HundredButton.IsEnabled = true;
+                    DataEditView.IsEnabled = true;
+
+                    DataContext = null;
+                    DataContext = this;
+
+                    SaveFile();
+                }
+                else
+                {
+                    SelectedGameData = OldWindowState.SelectedGameData;
+                    GameStatsVertical = OldWindowState.GameStatsVertical;
+                    SelectedFile = OldWindowState.SelectedFile;
+                    FilteredGameStats = OldWindowState.FilteredGameStats;
+                }
+                
+                if (result == MessageBoxResult.No)
+                {
                     LoadButton_Clicked(null, null);
+                }
             }
         }
     }
