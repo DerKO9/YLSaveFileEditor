@@ -49,30 +49,29 @@ namespace YLSaveFileEditor
 
         private void MoveCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
         {
-            //AllMovesCheckBox.IsChecked = null;
-            //if ((CamoCloakCheckBox.IsChecked == true) && (SonarShotCheckBox.IsChecked == true)
-            //    && (SonarSplosionCheckBox.IsChecked == true) && (SonarShieldCheckBox.IsChecked == true)
-            //    && (RollCheckBox.IsChecked == true) && (SlurpShotCheckBox.IsChecked == true)
-            //    && (SlurpStateCheckBox.IsChecked == true) && (ReptileRushCheckBox.IsChecked == true)
-            //    && (GlideCheckBox.IsChecked == true) && (FlappyFlightCheckBox.IsChecked == true)
-            //    && (BuddySlamCheckBox.IsChecked == true) && (LizardLeapCheckBox.IsChecked == true)
-            //    && (BuddyBubbleCheckBox.IsChecked == true) && (LizardLashCheckBox.IsChecked == true)
-            //    && (GroundAttackCheckBox.IsChecked == true) && (AirAttackCheckBox.IsChecked == true))
-            //{
-            //    AllMovesCheckBox.IsChecked = true;
-            //}
-                
-            //if ((CamoCloakCheckBox.IsChecked == false) && (SonarShotCheckBox.IsChecked == false)
-            //    && (SonarSplosionCheckBox.IsChecked == false) && (SonarShieldCheckBox.IsChecked == false)
-            //    && (RollCheckBox.IsChecked == false) && (SlurpShotCheckBox.IsChecked == false)
-            //    && (SlurpStateCheckBox.IsChecked == false) && (ReptileRushCheckBox.IsChecked == false)
-            //    && (GlideCheckBox.IsChecked == false) && (FlappyFlightCheckBox.IsChecked == false)
-            //    && (BuddySlamCheckBox.IsChecked == false) && (LizardLeapCheckBox.IsChecked == false)
-            //    && (BuddyBubbleCheckBox.IsChecked == false) && (LizardLashCheckBox.IsChecked == false)
-            //    && (GroundAttackCheckBox.IsChecked == false) && (AirAttackCheckBox.IsChecked == false))
-            //{
-            //    AllMovesCheckBox.IsChecked = false;
-            //}
+            AllMovesCheckBox.IsChecked = null;
+            if ((CamoCloakCheckBox.IsChecked == true) && (SonarShotCheckBox.IsChecked == true)
+                && (SonarSplosionCheckBox.IsChecked == true) && (SonarShieldCheckBox.IsChecked == true)
+                && (RollCheckBox.IsChecked == true) && (SlurpShotCheckBox.IsChecked == true)
+                && (SlurpStateCheckBox.IsChecked == true) && (ReptileRushCheckBox.IsChecked == true)
+                && (GlideCheckBox.IsChecked == true) && (FlappyFlightCheckBox.IsChecked == true)
+                && (BuddySlamCheckBox.IsChecked == true) && (LizardLeapCheckBox.IsChecked == true)
+                && (BuddyBubbleCheckBox.IsChecked == true) && (LizardLashCheckBox.IsChecked == true)
+                && (GroundAttackCheckBox.IsChecked == true) && (AirAttackCheckBox.IsChecked == true))
+            {
+                AllMovesCheckBox.IsChecked = true;
+            }
+            if ((CamoCloakCheckBox.IsChecked == false) && (SonarShotCheckBox.IsChecked == false)
+                && (SonarSplosionCheckBox.IsChecked == false) && (SonarShieldCheckBox.IsChecked == false)
+                && (RollCheckBox.IsChecked == false) && (SlurpShotCheckBox.IsChecked == false)
+                && (SlurpStateCheckBox.IsChecked == false) && (ReptileRushCheckBox.IsChecked == false)
+                && (GlideCheckBox.IsChecked == false) && (FlappyFlightCheckBox.IsChecked == false)
+                && (BuddySlamCheckBox.IsChecked == false) && (LizardLeapCheckBox.IsChecked == false)
+                && (BuddyBubbleCheckBox.IsChecked == false) && (LizardLashCheckBox.IsChecked == false)
+                && (GroundAttackCheckBox.IsChecked == false) && (AirAttackCheckBox.IsChecked == false))
+            {
+                AllMovesCheckBox.IsChecked = false;
+            }
         }
 
         private void AllTonicsCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
@@ -98,6 +97,29 @@ namespace YLSaveFileEditor
 
         private void TonicCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
         {
+            AllTonicsCheckBox.IsChecked = null;
+            if ((WellardCheckBox.IsChecked == true) && (BallerCheckBox.IsChecked == true)
+                && (SuperSlamCheckBox.IsChecked == true) && (BruiserCheckBox.IsChecked == true)
+                && (LivewireCheckBox.IsChecked == true) && (FallproofCheckBox.IsChecked == true)
+                && (HoarderCheckBox.IsChecked == true) && (SalmonCheckBox.IsChecked == true)
+                && (HunterCheckBox.IsChecked == true) && (LoadedCheckBox.IsChecked == true)
+                && (PeekabooCheckBox.IsChecked == true) && (ButterthreeCheckBox.IsChecked == true)
+                && (HeliumCheckBox.IsChecked == true) && (AthleteCheckBox.IsChecked == true)
+                && (SixtyFourBitCheckBox.IsChecked == true) && (PantsCheckBox.IsChecked == true))
+            {
+                AllTonicsCheckBox.IsChecked = true;
+            }
+            if ((WellardCheckBox.IsChecked == false) && (BallerCheckBox.IsChecked == false)
+                && (SuperSlamCheckBox.IsChecked == false) && (BruiserCheckBox.IsChecked == false)
+                && (LivewireCheckBox.IsChecked == false) && (FallproofCheckBox.IsChecked == false)
+                && (HoarderCheckBox.IsChecked == false) && (SalmonCheckBox.IsChecked == false)
+                && (HunterCheckBox.IsChecked == false) && (LoadedCheckBox.IsChecked == false)
+                && (PeekabooCheckBox.IsChecked == false) && (ButterthreeCheckBox.IsChecked == false)
+                && (HeliumCheckBox.IsChecked == false) && (AthleteCheckBox.IsChecked == false)
+                && (SixtyFourBitCheckBox.IsChecked == false) && (PantsCheckBox.IsChecked == false))
+            {
+                AllTonicsCheckBox.IsChecked = false;
+            }
         }
 
         private bool _haveGivenMacHealthWarning = false;
