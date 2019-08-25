@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:YLSaveFileEditor"
         xmlns:world="clr-namespace:YLSaveFileEditor.WorldViews"
         mc:Ignorable="d"
-        Title="YL Save File Editor" Height="450" Width="630" WindowStartupLocation="CenterOwner" Icon="Resources/YlSaveFileEdit.ico">
+        Title="YL Save File Editor" MinHeight="450" Height="450" MinWidth="650" Width="650" WindowStartupLocation="CenterOwner" Icon="Resources/YlSaveFileEdit.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -29,12 +29,14 @@
                 <local:AboutView/>
             </TabItem>
         </TabControl>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Height="40" Width="auto">
-            <Label Name="FileTextBox" FontWeight="Bold" Height="25" Margin="5" HorizontalContentAlignment="Right"
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Height="40" Width="auto">
+            <Button Name="ZeroButton" Content="0%" Click="ZeroHundredButton_Click" Height="25" Width="80" Margin="5" IsEnabled="False"/>
+            <Button Name="HundredButton" Content="100%" Click="ZeroHundredButton_Click" Height="25" Width="80" Margin="5" IsEnabled="False"/>
+            <Label Name="FileTextBox" FontWeight="Bold" Height="25" MinWidth="80" Margin="5" HorizontalContentAlignment="Center"
                    Content="{Binding SelectedFileDisplay}" />
-            <Button Name="ReloadButton" Content="Reload" Click="ReloadButton_Click" Height="25" Width="85" Margin="5" IsEnabled="False"/>
-            <Button Name="LoadButton" Content="Load" Click="LoadButton_Clicked" Height="25" Width="85" Margin="5"/>
-            <Button Name="SaveButton" Content="Save" Click="SaveButton_Clicked" Height="25" Width="85" Margin="5" IsEnabled="False"/>
+            <Button Name="ReloadButton" Content="Reload" Click="ReloadButton_Click" Height="25" Width="80" Margin="5" IsEnabled="False"/>
+            <Button Name="LoadButton" Content="Load" Click="LoadButton_Clicked" Height="25" Width="80" Margin="5"/>
+            <Button Name="SaveButton" Content="Save" Click="SaveButton_Clicked" Height="25" Width="80" Margin="5" IsEnabled="False"/>
             <CheckBox Name="ReadOnlyCheckBox" Content="Read Only" VerticalAlignment="Center" Margin="5,0,10,0"
                       IsChecked="{Binding FileReadOnly}" IsEnabled="False"/>
         </StackPanel>

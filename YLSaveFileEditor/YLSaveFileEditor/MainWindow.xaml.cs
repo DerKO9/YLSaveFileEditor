@@ -70,15 +70,15 @@ namespace YLSaveFileEditor
                 File.SetAttributes(SelectedFile, attr);
             }
 
-            SaveButton.IsEnabled = false;
             DelayedButtonEnable(e.OriginalSource as Button);
         }
 
         private async void DelayedButtonEnable(Button button)
         {
+            button.IsEnabled = false;
             await Task.Run(() =>
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(700);
             });
             button.IsEnabled = true;
         }
@@ -99,8 +99,12 @@ namespace YLSaveFileEditor
             {
                 if (System.IO.Path.GetFileName(openFileDialog.FileName).Equals("profile.dat"))
                 {
-                    MessageBox.Show("Can't edit \"profile.dat\"", @"Can't Open File ¯\_(ツ)_/¯", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    goto SelectFile;
+                    MessageBoxResult result = MessageBox.Show("Can't edit \"profile.dat\"\n" +
+                        "It contains profile data and is not a save file.", @"Can't Open File ¯\_(ツ)_/¯",
+                        MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.OK)
+                        goto SelectFile;
+                    else return;
                 }
                 SelectedFile = openFileDialog.FileName;
             }
@@ -112,11 +116,38 @@ namespace YLSaveFileEditor
         private void ReloadButton_Click(object sender, RoutedEventArgs e)
         {
             LoadFile();
-            ReloadButton.IsEnabled = false;
-            DelayedButtonEnable(e.OriginalSource as Button);
+            DelayedButtonEnable(e.Source as Button);
         }
 
-        private void LoadFile()
+        private void ZeroHundredButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button buttonSource = e.Source as Button;
+            string json;
+            if (buttonSource.Name == "HundredButton")
+                json = Properties.Resources._100_;
+            else if (buttonSource.Name == "ZeroButton")
+                json = Properties.Resources._0_;
+            else
+                throw new ArgumentException();
+
+            SelectedGameData = new GameData();
+            SelectedGameData = GameData.FromJson(json);
+
+            GameStatsVertical = new List<GameStat>();
+            for (int i = 0; i < SelectedGameData.Gamestats.Names.Length; i++)
+            {
+                GameStatsVertical.Add(new GameStat(i + 1, SelectedGameData.Gamestats.Names[i], SelectedGameData.Gamestats.Values[i]));
+            }
+
+            FilteredGameStats = new GameStatsListCollectionViews(GameStatsVertical);
+
+            DataContext = null;
+            DataContext = this;
+
+            DelayedButtonEnable(buttonSource as Button);
+        }
+
+            private void LoadFile()
         {
             try
             {
@@ -144,19 +175,25 @@ namespace YLSaveFileEditor
                 ReloadButton.IsEnabled = true;
                 SaveButton.IsEnabled = true;
                 ReadOnlyCheckBox.IsEnabled = true;
+                ZeroButton.IsEnabled = true;
+                HundredButton.IsEnabled = true;
+                DataEditView.IsEnabled = true;
 
                 DataContext = null;
                 DataContext = this;
-                DataEditView.IsEnabled = true;
+                
             }
-            catch
+            catch (Exception e)
             {
                 SelectedGameData = OldWindowState.SelectedGameData;
                 GameStatsVertical = OldWindowState.GameStatsVertical;
                 SelectedFile = OldWindowState.SelectedFile;
                 FilteredGameStats = OldWindowState.FilteredGameStats;
-                MessageBox.Show("There was an error loading the file.\nCheck to see if your save file is valid and up to date.", @"Can't Open File ¯\_(ツ)_/¯", MessageBoxButton.OK, MessageBoxImage.Warning);
-                LoadButton_Clicked(null, null);
+                MessageBoxResult result = MessageBox.Show("There was an error loading the file.\n" +
+                    "Check to see if your save file is valid and up to date.\n\n"+e.ToString(), @"Can't Open File ¯\_(ツ)_/¯",
+                    MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                if(result == MessageBoxResult.OK)
+                    LoadButton_Clicked(null, null);
             }
         }
     }
