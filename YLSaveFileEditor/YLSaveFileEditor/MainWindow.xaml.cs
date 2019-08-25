@@ -212,6 +212,16 @@ namespace YLSaveFileEditor
 
                     FilteredGameStats = new GameStatsListCollectionViews(GameStatsVertical);
 
+                    var attr = File.GetAttributes(SelectedFile);
+                    if (attr == (attr | FileAttributes.ReadOnly))
+                    {
+                        ReadOnlyCheckBox.IsChecked = true;
+                    }
+                    else if (attr == (attr & ~FileAttributes.ReadOnly))
+                    {
+                        ReadOnlyCheckBox.IsChecked = false;
+                    }
+
                     ReloadButton.IsEnabled = true;
                     SaveButton.IsEnabled = true;
                     ReadOnlyCheckBox.IsEnabled = true;
